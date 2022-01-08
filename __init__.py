@@ -52,27 +52,22 @@ bl_info = {
 def draw_button(self, context):
     scene = context.scene 
     #if scene.shelf_list:
-    if context.region.alignment == 'RIGHT':
-        layout = self.layout
-
-
-        row = layout.row(align=True)
-        for i in range(0, len(scene.shelf_list)):
-            if scene.shelf_list[i].show_button_name:
-                row.operator(operator=scene.shelf_list[i].button_operator, 
-                            text=scene.shelf_list[i].button_name, 
-                            icon=scene.shelf_list[i].button_icon)                                
-            else:
-                row.operator(operator=scene.shelf_list[i].button_operator, 
-                            text="", 
-                            icon=scene.shelf_list[i].button_icon)
-        
-        row = layout.row()
-        preset_label = bpy.types.SHELVES_MT_Presets.bl_label
-        row.menu('SHELVES_MT_Presets', text=preset_label, icon='PRESET')
-
-        return{'FINISHED'}
-
+    layout = self.layout
+    row = layout.row(align=True)
+    for i in range(0, len(scene.shelf_list)):
+        if scene.shelf_list[i].show_button_name:
+            row.operator(operator=scene.shelf_list[i].button_operator, 
+                        text=scene.shelf_list[i].button_name, 
+                        icon=scene.shelf_list[i].button_icon)                                
+        else:
+            row.operator(operator=scene.shelf_list[i].button_operator, 
+                        text="", 
+                        icon=scene.shelf_list[i].button_icon)
+    
+    row = layout.row()
+    preset_label = bpy.types.SHELVES_MT_Presets.bl_label
+    row.menu('SHELVES_MT_Presets', text=preset_label, icon='PRESET')
+    return{'FINISHED'}
 
 class SHELVES_MT_Presets(Menu):  
     bl_label = "Shelves"
