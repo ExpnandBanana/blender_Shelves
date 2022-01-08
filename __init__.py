@@ -52,9 +52,6 @@ bl_info = {
 def draw_button(self, context):
     scene = context.scene 
     #if scene.shelf_list:
-    if context.region.alignment == 'RIGHT':
-        layout = self.layout
-
 
         row = layout.row(align=True)
         for i in range(0, len(scene.shelf_list)):
@@ -219,7 +216,7 @@ def register():
         print("installing preset: ", p)
         shutil.copy2(os.path.join(bundled_presets, p), presets_target_folder)            
 
-    bpy.types.TOPBAR_HT_upper_bar.prepend(draw_button)
+    bpy.types.GRAPH_HT_header.prepend(draw_button)
 
     bpy.types.Scene.shelf_list = CollectionProperty(type = SHELVES_ButtonsList) 
     bpy.types.Scene.shelf_list_index = IntProperty(default = 0) 
@@ -228,7 +225,7 @@ def register():
 def unregister():
     del bpy.types.Scene.shelf_list 
     del bpy.types.Scene.shelf_list_index 
-    bpy.types.TOPBAR_HT_upper_bar.remove(draw_button)
+    bpy.types.GRAPH_HT_header.remove(draw_button)
     [bpy.utils.unregister_class(c) for c in classes]
 
 
