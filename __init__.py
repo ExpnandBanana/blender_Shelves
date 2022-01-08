@@ -216,7 +216,7 @@ def register():
         print("installing preset: ", p)
         shutil.copy2(os.path.join(bundled_presets, p), presets_target_folder)            
 
-    bpy.types.GRAPH_HT_header.prepend(draw_button)
+    bpy.types.GRAPH_MT_editor_menus.append(draw_button)
 
     bpy.types.Scene.shelf_list = CollectionProperty(type = SHELVES_ButtonsList) 
     bpy.types.Scene.shelf_list_index = IntProperty(default = 0) 
@@ -225,7 +225,7 @@ def register():
 def unregister():
     del bpy.types.Scene.shelf_list 
     del bpy.types.Scene.shelf_list_index 
-    bpy.types.GRAPH_HT_header.remove(draw_button)
+    bpy.types.GRAPH_MT_editor_menus.remove(draw_button)
     [bpy.utils.unregister_class(c) for c in classes]
 
 
