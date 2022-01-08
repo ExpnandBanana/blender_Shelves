@@ -50,8 +50,12 @@ bl_info = {
 
 
 def draw_button(self, context):
-    scene = context.scene
-        for i in range(0, len(scene.shelf_list)):
+    scene = context.scene 
+    #if scene.shelf_list:
+    layout = self.layout
+
+
+        row = layout.row(align=True)
             if scene.shelf_list[i].show_button_name:
                 row.operator(operator=scene.shelf_list[i].button_operator, 
                             text=scene.shelf_list[i].button_name, 
