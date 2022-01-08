@@ -183,6 +183,13 @@ class SHELVES_LIST_OT_MoveButton(Operator):
         self.move_index() 
         return{'FINISHED'} 
         
+class TestOperator(Operator):
+    bl_idname = 'test.operator'
+    bl_label = 'test'
+    def execute(self, context):
+        bpy.ops.graph.interpolation_type(type='BEZIER')
+        return {'FINISHED'}
+        
 
 classes = (
     preferences.SHELVES_Preferences,
@@ -195,6 +202,7 @@ classes = (
     SHELVES_LIST_OT_NewButton,
     SHELVES_LIST_OT_DeleteButton,
     SHELVES_LIST_OT_MoveButton,
+    TestOperator,
     )            
 
 
