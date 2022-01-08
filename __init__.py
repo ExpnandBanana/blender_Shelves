@@ -70,7 +70,7 @@ def draw_button(self, context):
     preset_label = bpy.types.SHELVES_MT_Presets.bl_label
     row.menu('SHELVES_MT_Presets', text=preset_label, icon='PRESET')
 
-        return{'FINISHED'}
+    return{'FINISHED'}
 
 
 class SHELVES_MT_Presets(Menu):  
